@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    div(ng-controller="mainCtrl")
+
+        h1 Fixr for Heroku
+
+        hr
+
+        .panel.panel-default(ng-repeat="app in appList")
+            .panel-heading 
+                a.panel-title(href="{{app.web_url}}") {{app.name}}
+                button.btn.btn-default.btn-xs.pull-right(ng-click="restartApp(app.name)") FIX
+            .panel-body
+                dl.dl-horizontal
+                    dt Language
+                    dd {{app.buildpack_provided_description || "buildpack"}}
+                    dt Region
+                    dd {{app.region.name}}
+                    dt Maintenance
+                    dd {{app.maintenance}}
+                    dt Stack
+                    dd {{app.stack.name || "buildpack"}}
+                    dt Slug Size
+                    dd {{app.slug_size || "buildpack"}}
+                    dt Repo Size
+                    dd {{app.repo_size || "buildpack"}}
+                    dt URL
+                    dd 
+                        a(href="{{app.web_url}}") {{app.web_url}}
+                    dt Update
+                    dd {{app.updated_at}}
+                    dt Release
+                    dd {{app.released_at}}
+                    dt Create
+                    dd {{app.created_at}}
+
+
